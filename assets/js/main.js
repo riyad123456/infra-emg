@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Prevent browser from restoring previous scroll position on reload/navigation.
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
     // Page load transition
     setTimeout(() => {
         document.body.classList.add('page-loaded');
@@ -62,5 +68,42 @@ document.addEventListener('DOMContentLoaded', () => {
                 menuToggle.classList.remove('active');
             }
         });
+    }
+
+    // Navbar behavior:
+    // 1) transparent at absolute top
+    // 2) hides on scroll down
+    // 3) appears on scroll up
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        let lastScrollY = window.scrollY;
+        const hideOffset = 80;
+
+        const updateNavbar = () => {
+            const currentScrollY = window.scrollY;
+            const atTop = currentScrollY <= 2;
+
+            navbar.classList.toggle('at-top', atTop);
+
+            // Keep navbar visible while mobile menu is open.
+            if (navLinks && navLinks.classList.contains('active')) {
+                navbar.classList.remove('nav-hidden');
+                lastScrollY = currentScrollY;
+                return;
+            }
+
+            if (atTop) {
+                navbar.classList.remove('nav-hidden');
+            } else if (currentScrollY > lastScrollY && currentScrollY > hideOffset) {
+                navbar.classList.add('nav-hidden');
+            } else if (currentScrollY < lastScrollY) {
+                navbar.classList.remove('nav-hidden');
+            }
+
+            lastScrollY = currentScrollY;
+        };
+
+        updateNavbar();
+        window.addEventListener('scroll', updateNavbar, { passive: true });
     }
 });
