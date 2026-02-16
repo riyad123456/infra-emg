@@ -1,0 +1,243 @@
+/* Partenaires Page - Cloud of Circles Design */
+
+:root {
+    --color-public: #1e3a8a;
+    /* IE Blue */
+    --color-private: #475569;
+    /* Slate */
+    --color-tech: #0d9488;
+    /* Teal */
+    --font-partners: 'Inter', sans-serif;
+}
+
+.partners-page {
+    background: #f8fafc;
+    color: #1e293b;
+    overflow-x: hidden;
+}
+
+/* HERO SECTION */
+.partners-hero {
+    padding: 160px 0 80px;
+    background: white;
+    text-align: center;
+}
+
+.partners-hero h1 {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 900;
+    letter-spacing: -2px;
+    color: var(--color-public);
+    margin-bottom: 20px;
+}
+
+.partners-hero p {
+    font-size: 1.25rem;
+    color: #64748b;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* CLOUD CONTAINER */
+.partners-section {
+    padding: 100px 0;
+}
+
+.category-title {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.category-title h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    display: inline-block;
+}
+
+.category-title .line {
+    height: 4px;
+    width: 100px;
+    background: currentColor;
+    margin: 15px auto 0;
+}
+
+/* THE CLOUD */
+.partners-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 60px;
+    min-height: 500px;
+    position: relative;
+}
+
+.partner-bubble {
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 3px solid transparent;
+    cursor: default;
+    animation: float 6s ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+    position: relative;
+    z-index: 1;
+}
+
+/* Disordered Layout Offsets */
+.partner-bubble:nth-child(odd) {
+    transform: translateY(20px);
+}
+
+.partner-bubble:nth-child(3n) {
+    transform: translateX(-15px) translateY(-20px);
+}
+
+.partner-bubble:nth-child(4n) {
+    transform: translateX(15px) translateY(10px);
+}
+
+.partner-bubble:nth-child(5n) {
+    transform: translateY(-30px) rotate(3deg);
+}
+
+.partner-bubble:hover {
+    transform: scale(1.05) translateY(-15px) !important;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+    z-index: 10;
+    animation: shake 0.5s ease-in-out;
+    /* Shake then stabilize */
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: scale(1.05) translateY(-15px) rotate(0deg);
+    }
+
+    20% {
+        transform: scale(1.05) translateY(-15px) rotate(3deg);
+    }
+
+    40% {
+        transform: scale(1.05) translateY(-15px) rotate(-3deg);
+    }
+
+    60% {
+        transform: scale(1.05) translateY(-15px) rotate(2deg);
+    }
+
+    80% {
+        transform: scale(1.05) translateY(-15px) rotate(-2deg);
+    }
+}
+
+/* Size Variants (Reduced by ~35%) */
+.bubble-lg {
+    width: 240px;
+    height: 240px;
+}
+
+.bubble-md {
+    width: 200px;
+    height: 200px;
+}
+
+.bubble-sm {
+    width: 160px;
+    height: 160px;
+}
+
+/* Category Coloring */
+.public-cloud .partner-bubble {
+    border-color: rgba(30, 58, 138, 0.15);
+}
+
+.public-cloud .partner-bubble:hover {
+    border-color: var(--color-public);
+}
+
+.private-cloud .partner-bubble {
+    border-color: rgba(71, 85, 105, 0.15);
+}
+
+.private-cloud .partner-bubble:hover {
+    border-color: var(--color-private);
+}
+
+.tech-cloud .partner-bubble {
+    border-color: rgba(13, 148, 136, 0.15);
+}
+
+.tech-cloud .partner-bubble:hover {
+    border-color: var(--color-tech);
+}
+
+/* CONTENT */
+.partner-logo {
+    width: 50%;
+    height: auto;
+    max-height: 50px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+
+.partner-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.2;
+    padding: 0 10px;
+    color: var(--color-primary);
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        margin-top: 0;
+    }
+
+    50% {
+        margin-top: -20px;
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .partners-cloud {
+        gap: 15px;
+        padding: 20px;
+    }
+
+    .bubble-lg {
+        width: 160px;
+        height: 160px;
+    }
+
+    .bubble-md {
+        width: 140px;
+        height: 140px;
+    }
+
+    .bubble-sm {
+        width: 120px;
+        height: 120px;
+    }
+
+    .partner-name {
+        font-size: 0.75rem;
+    }
+}
